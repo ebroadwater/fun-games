@@ -1,0 +1,16 @@
+body {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.custom-card {
+    border-width:5px;
+    border-style: solid;
+}
+.centered-text {
+    text-align: center;
+}
+.full-page-center {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
