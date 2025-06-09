@@ -7,16 +7,16 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:30px;">
-                <a class="navbar-brand" href="homepage.php">Fun Games</a>
+                <a class="navbar-brand" href="?command=home">Fun Games</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="text-align:right">
                     <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="?command=home">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="?command=connections">Connections</a>
                     <a class="nav-item nav-link" href="?command=spotify">Spotify</a>
-                    <a class="nav-item nav-link" href="#">Profile</a>
+                    <a class="nav-item nav-link" href="?command=leaderboard">Leaderboard</a>
                     </div>
                 </div>
             </nav>
@@ -29,14 +29,12 @@
                     <img src="/fun-games/public/images/puzzle-pieces.png" class="card-img-top" alt="puzzle pieces">
                     <div class="card-body centered-text">
                         <h3>Play Connections</h3>
-                        <!-- <p class="card-text">this is some example text for something something something</p> -->
                     </div>
                 </div>
                 <div class="card custom-card" style="width:18rem;">
                     <img src="/fun-games/public/images/spotify-logo.png" class="card-img-top" alt="spotify green logo">
                     <div class="card-body centered-text">
                         <h3>Check your Spotify</h3>
-                        <!-- <p class="card-text">this is some example text for something something something</p> -->
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 
 spl_autoload_register(function ($class) {
     // include "/$class.php";
-    $paths = ['controllers', 'models', 'core', 'config', 'views', 'public']; 
+    $paths = ['controllers', 'models', 'core', 'config', 'views', 'public', 'data']; 
     foreach ($paths as $dir) {
         $file = __DIR__ . "/$dir/$class.php";
         if (file_exists($file)) {
