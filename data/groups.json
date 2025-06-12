@@ -1,0 +1,22 @@
+[
+    {
+        "group": "Professions", 
+        "words": ["Judge", "Driver", "Baker", "Pilot"], 
+        "level": "easy"
+    },
+    {
+        "group": "Common First Names", 
+        "words": ["Chase", "Faith", "Rose", "Hunter"], 
+        "level": "intermediate"
+    },
+    {
+        "group": "Hallmark Actors",
+        "words": ["Walker", "Hynes", "Campbell", "Penny"], 
+        "level": "advanced"
+    }, 
+    {
+        "group": "__ Ball", 
+        "words": ["Snow", "Foot", "Basket", "Soft"], 
+        "level": "difficult"
+    }
+]
