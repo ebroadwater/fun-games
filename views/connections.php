@@ -27,7 +27,7 @@
     <div class="game-container">
         <!-- <h1 class="game-title">CONNECTIONS</h1> -->
         <div id="popup">
-            <p id="oneAway">One Away...</p>
+            <p id="message"></p>
         </div>
         <div class="word-grid" id="grid-container"></div>
 
@@ -166,6 +166,17 @@
         renderDots(); 
     }
 
+    function showPopup(message){
+        const popup = document.getElementById('popup'); 
+        const popupMessage = document.getElementById('message'); 
+        popupMessage.innerHTML = message; 
+        popup.classList.add('show'); 
+
+        setTimeout(() => {
+            popup.classList.remove('show'); 
+        }, 1500);
+    }
+
     function createCard(word) {
         const gridItem = document.createElement('div'); 
         gridItem.className = 'grid-item'; 
@@ -223,13 +234,7 @@
                     break; 
                 }
                 else if (overlap.length == 3){
-                    console.log(`SO CLOSE`); 
-                    const popup = document.getElementById('popup'); 
-                    popup.classList.add('show'); 
-
-                    setTimeout(() => {
-                        popup.classList.remove('show'); 
-                    }, 1500); 
+                    showPopup('One away...');  
 
                     break; 
                 }
@@ -251,12 +256,24 @@
                 localStorage.setItem('gameState', JSON.stringify(gameState));
                 renderDots(); 
 
-                setTimeout(() => {
-                    clearAnswers(); 
-                }, 600);
+                // No more guesses left -- game over 
+                if (mistakesLeft == 0){ 
+                    showPopup("Next Time"); 
+                    for (group of groups){
+                        if (!solvedGroups.some(g => g.group === group.group)){
+                            solvedGroups.push({
+                                group: group.group, 
+                                level: group.level, 
+                                words: group.words
+                            }); 
+                        }
+                    }
+                    
+                    gameState.solvedGroups = solvedGroups; 
+                    localStorage.setItem('gameState', JSON.stringify(gameState));
 
-                if (mistakesLeft == 0){
-                    console.log("GAME OVER"); 
+                    clearAnswers(); 
+                    displayCards(); 
                 }
             }
         }, 400); 
