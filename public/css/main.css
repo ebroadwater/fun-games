@@ -78,13 +78,14 @@ body {
     text-align: center;
 }
 .card {
-    background-color: #edebda;
-    border-radius: 8px;
+    /* background-color: #edebda; */
+    background-color: #efefe6;
+    border-radius: 6px;
+    border:none; 
     padding: 1.5rem;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     will-change: transform, opacity;
 }
@@ -104,3 +105,44 @@ body {
     color: black;
     font-weight: bold;
 }
+.bounce {
+    animation: bounce 0.4s ease-out forwards; 
+}
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+.shake {
+    animation: shake 0.4s ease-in-out; 
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  50%      { transform: translateX(8px); }
+  75%      { transform: translateX(-6px); }
+}
+#popup {
+    border: solid 1px black; 
+    margin: 0 auto 30px auto; /* center horizontally */
+    background-color: black;
+    color: white;
+    width: fit-content; /* or a fixed width if preferred */
+    padding: 0.5rem 1rem;  /* instead of height */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* vertically center text */
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+}
+#popup p {
+    margin: 0;
+    text-align: center;
+}
+#popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+

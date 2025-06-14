@@ -25,7 +25,10 @@
         <title>Connections</title>
     </head>
     <div class="game-container">
-        <h1 class="game-title">CONNECTIONS</h1>
+        <!-- <h1 class="game-title">CONNECTIONS</h1> -->
+        <div id="popup">
+            <p id="oneAway">One Away...</p>
+        </div>
         <div class="word-grid" id="grid-container"></div>
 
         <div class="options-container" >
@@ -183,52 +186,80 @@
     function validateAnswers() {
         const chosen = Array.from(selectedWords);
         let isFound = false; 
+        const cards = document.querySelectorAll('.card.selected');
 
-        for (const group of groups){
-            const overlap = chosen.filter(word => group.words.includes(word)); 
-            
-            if (overlap.length == 4){
-                isFound = true; 
-                console.log(`CORRECT! Group: ${group.group}`); 
+        // All selected cards bounce
+        for (const card of cards) {
+            card.classList.add('bounce');
+        }
 
-                // Animate selected cards out
-                const cards = document.querySelectorAll('.card.selected');
-                for (const card of cards) {
-                    card.classList.add('fade-out');
+        setTimeout(() => {
+            for (const group of groups){
+                const overlap = chosen.filter(word => group.words.includes(word)); 
+                
+                if (overlap.length == 4){
+                    isFound = true; 
+                    console.log(`CORRECT! Group: ${group.group}`); 
+
+                    // Animate selected cards out
+                    for (const card of cards) {
+                        card.classList.remove('bounce'); 
+                        card.classList.add('fade-out');
+                    }
+
+                    // Wait for animation to finish before updating DOM
+                    setTimeout(() => {
+                        solvedGroups.push({
+                            group: group.group, 
+                            level: group.level, 
+                            words: group.words
+                        }); 
+                        gameState.solvedGroups = solvedGroups; 
+                        localStorage.setItem('gameState', JSON.stringify(gameState));
+
+                        clearAnswers(); 
+                        displayCards(); 
+                    }, 400); // match CSS transition duration
+                    break; 
+                }
+                else if (overlap.length == 3){
+                    console.log(`SO CLOSE`); 
+                    const popup = document.getElementById('popup'); 
+                    popup.classList.add('show'); 
+
+                    setTimeout(() => {
+                        popup.classList.remove('show'); 
+                    }, 1500); 
+
+                    break; 
+                }
+            }
+
+            if (!isFound){
+                for (const card of cards){
+                    card.classList.remove('bounce'); 
+                    card.classList.add('shake'); 
+
+                    // Remove shake class after animation to allow replay
+                    setTimeout(() => {
+                        card.classList.remove('shake');
+                    }, 300);
                 }
 
-                // Wait for animation to finish before updating DOM
+                mistakesLeft -= 1; 
+                gameState.mistakesLeft = mistakesLeft; 
+                localStorage.setItem('gameState', JSON.stringify(gameState));
+                renderDots(); 
+
                 setTimeout(() => {
-                    solvedGroups.push({
-                        group: group.group, 
-                        level: group.level, 
-                        words: group.words
-                    }); 
-                    gameState.solvedGroups = solvedGroups; 
-                    localStorage.setItem('gameState', JSON.stringify(gameState));
-
                     clearAnswers(); 
-                    displayCards(); 
-                }, 400); // match CSS transition duration
-                break; 
-            }
-            else if (overlap.length == 3){
-                console.log(`SO CLOSE`); 
-                break; 
-            }
-        }
+                }, 600);
 
-        if (!isFound){
-            mistakesLeft -= 1; 
-
-            gameState.mistakesLeft = mistakesLeft; 
-            localStorage.setItem('gameState', JSON.stringify(gameState));
-            renderDots(); 
-
-            if (mistakesLeft == 0){
-                console.log("GAME OVER"); 
+                if (mistakesLeft == 0){
+                    console.log("GAME OVER"); 
+                }
             }
-        }
+        }, 400); 
     }
 
     displayCards(); 
