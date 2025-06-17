@@ -1,21 +1,13 @@
 body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     margin: 0;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0; 
 }
-/* .custom-card {
-    background-color: #b6c3d0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-.centered-text {
-    text-align: center;
+button {
+    border: solid 1px black;
+    padding: 10px 20px 10px 20px; 
+    border-radius: 20px;
+    background-color: white;
 }
 .full-page-center {
   min-height: 60vh;
@@ -29,6 +21,10 @@ body {
 }
 .options-container {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 .card.selected {
     background-color:steelblue; 
@@ -48,34 +44,40 @@ body {
 }
 .dot {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-color: red;
     border-radius: 50%;
-    margin: 0 3px;
-}
-.solved-group {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+    margin: 5px 3px;
 }
 .solved-row {
-    display: flex;
+    /* display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: repeat(4, auto); /* match exact width */
+    gap: 10px;
+    justify-content: center; /* center the entire group */
 }
+
 .unsolved-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, auto); /* match actual content width */
     gap: 10px;
+    justify-content: center; /* centers entire grid */
 }
 .word-grid {
     display:flex; 
     flex-direction: column;
 }
 .game-container {
-    max-width: 600px;
+    /* max-width: 600px;
     margin: auto;
+    text-align: center; */
+    max-width: 600px;
+    margin: 2rem auto;
     text-align: center;
+    padding: 1rem;
 }
 .card {
     /* background-color: #edebda; */
@@ -95,10 +97,13 @@ body {
     transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 .solved-group {
+    margin-bottom: 10px;
     padding: 1rem;
     border-radius: 10px;
-    margin-bottom: 10px;
+    box-sizing: border-box;
     width: 670px; 
+    position: relative; 
+    left: -50px; /* work around to make it in line with the unsolved-grid */
 }
 .solved-group h3 {
     margin: 0 0 0.5rem;

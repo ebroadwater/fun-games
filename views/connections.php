@@ -24,23 +24,41 @@
         <link rel="stylesheet" href="public/css/main.css">
         <title>Connections</title>
     </head>
-    <div class="game-container">
-        <!-- <h1 class="game-title">CONNECTIONS</h1> -->
-        <div id="popup">
-            <p id="message"></p>
-        </div>
-        <div class="word-grid" id="grid-container"></div>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:30px; padding-left:20px;">
+                <a class="navbar-brand" href="?command=home">Fun Games</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="text-align:right">
+                    <div class="navbar-nav ms-auto">
+                    <a class="nav-item nav-link active" href="?command=home">Home</a>
+                    <a class="nav-item nav-link" href="?command=connections">Connections</a>
+                    <a class="nav-item nav-link" href="?command=spotify">Spotify</a>
+                    <a class="nav-item nav-link" href="?command=leaderboard">Leaderboard</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="game-container">
+            <div id="popup">
+                <p id="message"></p>
+            </div>
+            <div class="word-grid" id="grid-container"></div>
 
-        <div class="options-container" >
-            <p style="margin: 0;">Mistakes Remaining</p>
-            <div id="mistake-dots"></div>
+            <div class="options-container" >
+                <p style="margin: 0;">Mistakes Remaining</p>
+                <div id="mistake-dots"></div>
+            </div>
+            <div class="options-container">
+                <button type="button" id="restart-btn" disabled>Restart</button>
+                <button type="button" id="shuffle-btn">Shuffle</button>
+                <button type="button" id="deselect-btn" disabled>Deselect All</button>
+                <button type="button" id="submit-btn" disabled>Submit</button>
+            </div>
         </div>
-        <div class="options-container">
-            <button type="button" id="shuffle-btn">Shuffle</button>
-            <button type="button" id="deselect-btn" disabled="true">Deselect All</button>
-            <button type="button" id="submit-btn" disabled="true">Submit</button>
-        </div>
-    </div>
+    </body>
 </html>
 
 <script>
@@ -80,6 +98,10 @@
         validateAnswers(); 
     }); 
 
+    document.getElementById('restart-btn').addEventListener('click', () => {
+        restartGame(); 
+    }); 
+
     function clearAnswers() {
         selectedWords.clear(); 
         const selectedCards = document.querySelectorAll('.card.selected'); 
@@ -88,6 +110,7 @@
         }
         document.getElementById('submit-btn').disabled = true;
         document.getElementById('deselect-btn').disabled = true;
+        // document.getElementById('restart-btn').disabled = true; 
     }
 
     function addCardListeners() {
@@ -182,7 +205,7 @@
         gridItem.className = 'grid-item'; 
 
         const card = document.createElement('div'); 
-        card.className = 'card custom-card h-100'; 
+        card.className = 'card h-100'; 
         card.innerHTML = `<h3>${word}</h3>`; 
 
         gridItem.appendChild(card); 
@@ -210,7 +233,6 @@
                 
                 if (overlap.length == 4){
                     isFound = true; 
-                    console.log(`CORRECT! Group: ${group.group}`); 
 
                     // Animate selected cards out
                     for (const card of cards) {
@@ -228,13 +250,19 @@
                         gameState.solvedGroups = solvedGroups; 
                         localStorage.setItem('gameState', JSON.stringify(gameState));
 
+                        if (solvedGroups.length == 4){
+                            showPopup('You Win!'); 
+                            // Enable restart button
+                            document.getElementById('restart-btn').disabled = false;
+                        }
+
                         clearAnswers(); 
                         displayCards(); 
                     }, 400); // match CSS transition duration
                     break; 
                 }
                 else if (overlap.length == 3){
-                    showPopup('One away...');  
+                    showPopup('One away!');  
 
                     break; 
                 }
@@ -267,8 +295,8 @@
                                 words: group.words
                             }); 
                         }
-                    }
-                    
+                    } 
+
                     gameState.solvedGroups = solvedGroups; 
                     localStorage.setItem('gameState', JSON.stringify(gameState));
 
@@ -277,6 +305,12 @@
                 }
             }
         }, 400); 
+    }
+
+    function restartGame() {
+        clearAnswers(); 
+        localStorage.clear(); 
+        location.reload(); 
     }
 
     displayCards(); 
