@@ -1,18 +1,8 @@
 <html>
-    <?php 
-        $json = file_get_contents('data/groups.json'); 
-        if ($json === false){
-            die('Error reading the json file'); 
-        }
-        $decoded = json_decode($json, true);
-        if ($decoded === null) {
-            die('Invalid JSON structure');
-        }
-    ?>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="public/css/main.css">
-        <title>Connections</title>
+        <title>Connect 4</title>
     </head>
     <body>
         <header>
@@ -32,29 +22,7 @@
             </nav>
         </header>
         <div class="game-container">
-            <div id="popup">
-                <p id="message"></p>
-            </div>
-            <div class="word-grid" id="grid-container"></div>
-
-            <div class="options-container" >
-                <p style="margin: 0;">Mistakes Remaining</p>
-                <div id="mistake-dots"></div>
-            </div>
-            <div class="options-container">
-                <button type="button" id="shuffle-btn">Shuffle</button>
-                <button type="button" id="deselect-btn" disabled>Deselect All</button>
-                <button type="button" id="submit-btn" disabled>Submit</button>
-            </div>
-            <div class="options-container" id="win-screen">
-                <button type="button" id="restart-btn" disabled>Restart</button>
-                <button type="button" id="new-game-btn" disabled="false">New Game</button>
-                <p id="all-played-msg"></p>
-            </div>
+            <h1>Connect 4</h1>
         </div>
-        <script>
-            const allGames = <?= json_encode($decoded) ?>;
-        </script>
-        <script src="public/js/connections.js"></script>
     </body>
 </html>

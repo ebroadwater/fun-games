@@ -15,7 +15,7 @@
                     <div class="navbar-nav ms-auto">
                     <a class="nav-item nav-link active" href="?command=home">Home</a>
                     <a class="nav-item nav-link" href="?command=connections">Connections</a>
-                    <a class="nav-item nav-link" href="?command=spotify">Spotify</a>
+                    <a class="nav-item nav-link" href="?command=mastermind">Mastermind</a>
                     <a class="nav-item nav-link" href="?command=leaderboard">Leaderboard</a>
                     </div>
                 </div>
@@ -25,16 +25,16 @@
         <h1 style="margin-bottom:30px; text-align:center;">Explore!</h1>
         <div class="full-page-center">
             <div class="d-flex justify-content-center gap-3 flex-wrap" style="gap:30px;">
-                <div class="card" style="width:18rem;">
+                <div class="card" style="width:18rem;" id="connections-card">
                     <img src="/fun-games/public/images/puzzle-pieces.png" class="card-img-top" alt="puzzle pieces">
                     <div class="card-body">
                         <h3>Play Connections</h3>
                     </div>
                 </div>
-                <div class="card" style="width:18rem;">
-                    <img src="/fun-games/public/images/spotify-logo.png" class="card-img-top" alt="spotify green logo">
+                <div class="card" style="width:18rem;" id="connect4-card">
+                    <img src="/fun-games/public/images/connect4.png" class="card-img-top" alt="connect four">
                     <div class="card-body">
-                        <h3>Check your Spotify</h3>
+                        <h3>Connect 4</h3>
                     </div>
                 </div>
             </div>
@@ -42,3 +42,11 @@
         
     </body>
 </html>
+<script>
+    document.getElementById('connections-card').addEventListener('click', () => {
+        window.location.href = "?command=connections"; 
+    }); 
+    document.getElementById('connect4-card').addEventListener('click', () => {
+        window.location.href = "?command=connect4"; 
+    }); 
+</script>

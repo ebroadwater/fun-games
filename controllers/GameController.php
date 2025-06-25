@@ -21,8 +21,8 @@ class GameController {
             case "connections":
                 $this->playConnections(); 
                 break;
-            case "spotify":
-                $this->spotify(); 
+            case "connect4":
+                $this->connect4(); 
                 break;
             case "leaderboard":
                 $this->showLeaderboard(); 
@@ -38,8 +38,8 @@ class GameController {
     public function playConnections(){
         include 'views/connections.php';
     }
-    public function spotify(){
-        include 'views/spotify.php';
+    public function connect4(){
+        include 'views/connect4.php';
     }
     public function showLeaderboard(){
         include 'views/leaderboard.php';

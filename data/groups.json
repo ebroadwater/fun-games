@@ -1,22 +1,52 @@
 [
     {
-        "group": "Professions", 
-        "words": ["Judge", "Driver", "Baker", "Pilot"], 
-        "level": "easy"
-    },
-    {
-        "group": "Common First Names", 
-        "words": ["Chase", "Faith", "Rose", "Hunter"], 
-        "level": "intermediate"
-    },
-    {
-        "group": "Hallmark Actors",
-        "words": ["Walker", "Hynes", "Campbell", "Penny"], 
-        "level": "advanced"
+        "game-id": 1, 
+        "groups": [
+            {
+                "group": "Professions", 
+                "words": ["Judge", "Driver", "Baker", "Pilot"], 
+                "level": "easy"
+            },
+            {
+                "group": "Common First Names", 
+                "words": ["Chase", "Faith", "Rose", "Hunter"], 
+                "level": "intermediate"
+            },
+            {
+                "group": "Hallmark Actors",
+                "words": ["Walker", "Hynes", "Campbell", "Penny"], 
+                "level": "advanced"
+            }, 
+            {
+                "group": "__ Ball", 
+                "words": ["Snow", "Foot", "Basket", "Soft"], 
+                "level": "difficult"
+            }
+        ]
     }, 
     {
-        "group": "__ Ball", 
-        "words": ["Snow", "Foot", "Basket", "Soft"], 
-        "level": "difficult"
+        "game-id": 2, 
+        "groups": [
+            {
+                "group": "Music Genres", 
+                "words": ["Emo", "Funk", "Grunge", "Jazz"], 
+                "level": "easy"
+            },
+            {
+                "group": "Band Names", 
+                "words": ["Journey", "Boston", "Eagles", "Chicago"], 
+                "level": "intermediate"
+            },
+            {
+                "group": "Songs with One-Word Titles",
+                "words": ["Radioactive", "Toxic", "Hello", "Stay"], 
+                "level": "advanced"
+            }, 
+            {
+                "group": "What 'America' Could Refer To", 
+                "words": ["Imagine Dragons song", "70s Band", "Country", "New World"], 
+                "level": "difficult"
+            }
+        ]
     }
 ]

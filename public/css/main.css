@@ -16,8 +16,8 @@ button {
   justify-content: center;
 }
 .grid-item {
-  width: 160px; /* match grid column width */
-  height: 100px;
+  width: 165px; /* match grid column width */
+  height: 110px;
 }
 .options-container {
     margin-top: 1rem;
@@ -51,9 +51,6 @@ button {
     margin: 5px 3px;
 }
 .solved-row {
-    /* display: flex;
-    gap: 10px;
-    justify-content: center; */
     display: grid;
     grid-template-columns: repeat(4, auto); /* match exact width */
     gap: 10px;
@@ -71,9 +68,6 @@ button {
     flex-direction: column;
 }
 .game-container {
-    /* max-width: 600px;
-    margin: auto;
-    text-align: center; */
     max-width: 600px;
     margin: 2rem auto;
     text-align: center;
@@ -84,12 +78,19 @@ button {
     background-color: #efefe6;
     border-radius: 6px;
     border:none; 
+    word-wrap: normal;
     padding: 1.5rem;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     will-change: transform, opacity;
+
+    display: flex;             /* Add this */
+    justify-content: center;   /* horizontally center */
+    align-items: center;       /* vertically center */
+    height: 100%;              /* make it fill the parent .grid-item */
+    box-sizing: border-box;    /* to include padding in height */
 }
 .card.fade-out {
     transform: translateY(-20px);
@@ -101,9 +102,9 @@ button {
     padding: 1rem;
     border-radius: 10px;
     box-sizing: border-box;
-    width: 670px; 
+    width: 690px; 
     position: relative; 
-    left: -50px; /* work around to make it in line with the unsolved-grid */
+    left: -60px; /* work around to make it in line with the unsolved-grid */
 }
 .solved-group h3 {
     margin: 0 0 0.5rem;
@@ -149,5 +150,16 @@ button {
 #popup.show {
     opacity: 1;
     visibility: visible;
+}
+#win-screen {
+    display: none; 
+}
+#win-screen button:hover:enabled {
+    background-color: rgb(250, 170, 170);
+}
+#all-played-msg {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
 }
 
